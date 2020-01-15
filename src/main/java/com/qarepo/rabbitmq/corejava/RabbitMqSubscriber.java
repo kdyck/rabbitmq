@@ -1,4 +1,4 @@
-package com.qarepo.rabbitmq.messages;
+package com.qarepo.rabbitmq.corejava;
 
 import com.rabbitmq.client.Channel;
 import com.rabbitmq.client.Connection;

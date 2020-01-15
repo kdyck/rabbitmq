@@ -1,11 +1,11 @@
-package com.qarepo.rabbitmq.messages.config;
+package com.qarepo.rabbitmq.springboot;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.ConfigurableApplicationContext;
 
-public class RabbitAmqpTutorialsRunner implements CommandLineRunner {
+public class RabbitCMDRunner implements CommandLineRunner {
 
     @Value("${tutorial.client.duration:0}")
     private int duration;

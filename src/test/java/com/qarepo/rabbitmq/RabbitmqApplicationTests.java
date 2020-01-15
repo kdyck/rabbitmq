@@ -9,5 +9,4 @@ class RabbitmqApplicationTests {
 	@Test
 	void contextLoads() {
 	}
-
 }

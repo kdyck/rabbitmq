@@ -1,6 +1,6 @@
 package com.qarepo.rabbitmq;
 
-import com.qarepo.rabbitmq.messages.config.RabbitAmqpTutorialsRunner;
+import com.qarepo.rabbitmq.springboot.RabbitCMDRunner;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -10,7 +10,7 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 
 @EnableScheduling
 @SpringBootApplication
-public class RabbitmqApplication {
+public class RabbitMQApplication {
 
 	@Profile("usage_message")
 	@Bean
@@ -18,18 +18,17 @@ public class RabbitmqApplication {
 		return args -> {
 			System.out.println("This app uses Spring Profiles to control its behavior.\n");
 			System.out.println("Sample usage: java -jar rabbitmq-0.0.1-SNAPSHOT.jar" +
-					" --spring.profiles.active=hello-world, sender");
+					" --spring.profiles.active=banners, sender");
 		};
 	}
 
 	@Profile("!usage_message")
 	@Bean
-	public CommandLineRunner tutorial() {
-		return new RabbitAmqpTutorialsRunner();
+	public CommandLineRunner commandLineRunner() {
+		return new RabbitCMDRunner();
 	}
 
 	public static void main(String[] args) {
-		SpringApplication.run(RabbitmqApplication.class, args);
+		SpringApplication.run(RabbitMQApplication.class, args);
 	}
-
 }

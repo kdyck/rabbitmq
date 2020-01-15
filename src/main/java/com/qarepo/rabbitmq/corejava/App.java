@@ -1,7 +1,7 @@
-package com.qarepo.rabbitmq.messages;
+package com.qarepo.rabbitmq.corejava;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.qarepo.rabbitmq.messages.model.QueueMessage;
+import com.qarepo.rabbitmq.springampq.QueueMessage;
 
 import java.io.IOException;
 import java.time.LocalDateTime;
@@ -13,9 +13,7 @@ public class App {
 
     public static void main(String[] args) throws IOException {
         ObjectMapper mapper = new ObjectMapper();
-        QueueMessage message = new QueueMessage("AALB2986152", "FAKEJOB 1361570770 HTML5 Banners"
-                , "");
-
+        QueueMessage message = new QueueMessage();
         String jsonMsg = mapper.writeValueAsString(message);
         System.out.println(jsonMsg);
 

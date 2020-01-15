@@ -1,7 +1,5 @@
-package com.qarepo.rabbitmq.messages.config;
+package com.qarepo.rabbitmq.springboot;
 
-import com.qarepo.rabbitmq.messages.service.BannerMessagePublisher;
-import com.qarepo.rabbitmq.messages.service.BannerMessageSubscriber;
 import org.springframework.amqp.core.*;
 import org.springframework.amqp.rabbit.annotation.RabbitListenerConfigurer;
 import org.springframework.amqp.rabbit.connection.ConnectionFactory;
@@ -15,9 +13,9 @@ import org.springframework.messaging.converter.MappingJackson2MessageConverter;
 import org.springframework.messaging.handler.annotation.support.DefaultMessageHandlerMethodFactory;
 import org.springframework.messaging.handler.annotation.support.MessageHandlerMethodFactory;
 
-@Profile({"config", "hello-world"})
+@Profile({"config", "banners"})
 @Configuration
-public class RabbitMQConfig implements RabbitListenerConfigurer {
+public class RabbitConfig implements RabbitListenerConfigurer {
     public static final String BANNERS_QUEUE = "banners-queue";
     public static final String BANNERS_EXCHANGE = "banners-exchange";
     public static final String BANNERS_QUEUE_DEAD = "dead-banner-queue";

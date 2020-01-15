@@ -1,4 +1,4 @@
-package com.qarepo.rabbitmq.messages;
+package com.qarepo.rabbitmq.corejava;
 
 public class RabbitMqSettings {
     private String host;

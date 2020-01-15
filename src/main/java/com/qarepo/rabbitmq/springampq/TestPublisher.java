@@ -1,4 +1,4 @@
-package com.qarepo.rabbitmq.messages.service;
+package com.qarepo.rabbitmq.springampq;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -7,7 +7,7 @@ import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 
-/*public class TestPublisher {
+public class TestPublisher {
     private static final Logger LOGGER = LogManager.getLogger(TestPublisher.class);
 
     @Autowired
@@ -23,4 +23,4 @@ import org.springframework.scheduling.annotation.Scheduled;
         this.template.convertAndSend(queue.getName(), message);
         LOGGER.info(" [x] Sent '" + message + "'");
     }
-}*/
+}

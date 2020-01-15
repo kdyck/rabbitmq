@@ -1,4 +1,4 @@
-package com.qarepo.rabbitmq.messages.model;
+package com.qarepo.rabbitmq.springampq;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -8,6 +8,12 @@ public class QueueMessage implements Serializable {
     private String jobNumber;
     private String jobName;
     private String previewUrl;
+
+    public QueueMessage() {
+        this.jobNumber = "AALB2986152";
+        this.jobName = "FAKEJOB 1361570770 HTML5 Banners";
+        this.previewUrl = "http://zpreview.ztrac.com/clients/583f191395dbd78ca1a2dae63a87acdc";
+    }
 
     public QueueMessage(
             @JsonProperty String jobNumber,

@@ -1,12 +1,12 @@
-package com.qarepo.rabbitmq.messages.config;
+package com.qarepo.rabbitmq.springampq;
 
 import org.springframework.amqp.core.Queue;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
 
-/*@Profile({"config","hello-world"})
-@Configuration
+// @Profile({"config","hello-world"})
+// @Configuration
 public class Config {
 
     @Bean
@@ -14,16 +14,16 @@ public class Config {
         return new Queue("hello");
     }
 
-    @Profile("receiver")
+    @Profile("receiver_ampq")
     @Bean
-    public TestSubscriber receiver() {
+    public TestSubscriber receiver_ampq() {
         return new TestSubscriber();
     }
 
-    @Profile("sender")
+    @Profile("sender_ampq")
     @Bean
-    public TestPublisher sender() {
+    public TestPublisher sender_ampq() {
         return new TestPublisher();
     }
- }*/
+ }
 
