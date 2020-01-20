@@ -1,4 +1,4 @@
-package com.qarepo.rabbitmq.springboot;
+package com.qarepo.rabbitmq.springboot.workers;
 
 import org.springframework.amqp.core.*;
 import org.springframework.amqp.rabbit.annotation.RabbitListenerConfigurer;
@@ -13,13 +13,12 @@ import org.springframework.messaging.converter.MappingJackson2MessageConverter;
 import org.springframework.messaging.handler.annotation.support.DefaultMessageHandlerMethodFactory;
 import org.springframework.messaging.handler.annotation.support.MessageHandlerMethodFactory;
 
-/*
-@Profile({"config", "banners"})
+/*@Profile({"config", "banners-workers"})
 @Configuration
-public class RabbitConfig implements RabbitListenerConfigurer {
-    public static final String BANNERS_QUEUE = "banners-queue";
-    public static final String BANNERS_EXCHANGE = "banners-exchange";
-    public static final String BANNERS_QUEUE_DEAD = "dead-banner-queue";
+public class RabbitWrkrConfig implements RabbitListenerConfigurer {
+    public static final String BANNERS_QUEUE = "banners-queue-worker";
+    public static final String BANNERS_EXCHANGE = "banners-exchange-worker";
+    public static final String BANNERS_QUEUE_DEAD = "dead-banner-queue-worker";
 
     @Bean
     public Queue bannersQueue() {
@@ -30,16 +29,24 @@ public class RabbitConfig implements RabbitListenerConfigurer {
                            .build();
     }
 
-    @Profile("receiver")
-    @Bean
-    public BannerMessageSubscriber receiver() {
-        return new BannerMessageSubscriber();
+    @Profile("receiver-wrkr")
+    public static class ReceiverConfig {
+
+        @Bean
+        public BannerMessageWorkerSubscriber receiver1() {
+            return new BannerMessageWorkerSubscriber(1);
+        }
+
+        @Bean
+        public BannerMessageWorkerSubscriber receiver2() {
+            return new BannerMessageWorkerSubscriber(2);
+        }
     }
 
-    @Profile("sender")
+    @Profile("sender-wrkr")
     @Bean
-    public BannerMessagePublisher sender() {
-        return new BannerMessagePublisher();
+    public BannerMessageWorkerPublisher sender1() {
+        return new BannerMessageWorkerPublisher();
     }
 
     @Bean
@@ -80,5 +87,4 @@ public class RabbitConfig implements RabbitListenerConfigurer {
     public void configureRabbitListeners(RabbitListenerEndpointRegistrar registrar) {
         registrar.setMessageHandlerMethodFactory(messageHandlerMethodFactory());
     }
-}
-*/
+}*/

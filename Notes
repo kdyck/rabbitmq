@@ -1,0 +1,4 @@
+./mvnw clean package
+
+java -jar target/rabbitmq-0.0.1-SNAPSHOT.jar --spring.profiles.active=banners,receiver
+java -jar target/rabbitmq-0.0.1-SNAPSHOT.jar --spring.profiles.active=banners,sender

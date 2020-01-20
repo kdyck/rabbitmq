@@ -50,10 +50,10 @@ public class BannerHTMLMessage implements Serializable {
 
     @Override
     public String toString() {
-        return "QueueMessage{" +
-                "jobNumber='" + jobNumber + '\'' +
-                ", jobName='" + jobName + '\'' +
-                ", previewUrl='" + previewUrl + '\'' +
-                '}';
-    }
+        return "{\n" +
+                "\"jobNumber\":" + "\"" + jobNumber + "\"," +
+                "\"jobName\":" + "\"" + jobName + "\"," +
+                "\"previewURL\":" + "\"" + previewUrl + "\"" +
+                "}";
+   }
 }

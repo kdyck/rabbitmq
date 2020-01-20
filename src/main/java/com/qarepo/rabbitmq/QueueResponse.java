@@ -1,5 +1,8 @@
-package com.qarepo.rabbitmq.springboot;
+package com.qarepo.rabbitmq;
 
+//import com.qarepo.rabbitmq.springboot.BannerMessagePublisher;
+
+/*
 public class QueueResponse implements QueueResponder {
     private String queueName;
     private String responseUrl;
@@ -23,3 +26,4 @@ public class QueueResponse implements QueueResponder {
        //  publisher.send();
     }
 }
+*/

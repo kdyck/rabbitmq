@@ -1,4 +1,4 @@
-package com.qarepo.rabbitmq.springboot;
+package com.qarepo.rabbitmq;
 
 public class MonitorQueue {
 
