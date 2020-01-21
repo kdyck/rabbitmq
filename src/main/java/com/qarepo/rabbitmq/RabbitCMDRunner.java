@@ -1,4 +1,4 @@
-package com.qarepo.rabbitmq.springboot;
+package com.qarepo.rabbitmq;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -7,7 +7,7 @@ import org.springframework.context.ConfigurableApplicationContext;
 
 public class RabbitCMDRunner implements CommandLineRunner {
 
-    @Value("${tutorial.client.duration:0}")
+    @Value("${banners.client.duration:0}")
     private int duration;
 
     @Autowired

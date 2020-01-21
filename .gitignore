@@ -36,7 +36,7 @@ build/
 /test-output/
 
 ### Project ###
-/banner-package/logs/
+/bannerHTML-package/logs/
 /Unzipped/
 /bannerHTML-package/urls.txt
 
