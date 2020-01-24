@@ -10,24 +10,18 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 public class MessageSender {
     private static final Logger LOGGER = LogManager.getLogger(MessageSender.class);
-    private BannerHTML bannerHTML;
+
+    @Autowired
+    MessageConfig config;
 
     @Autowired
     private Queue queue;
 
-    public BannerHTML getBannerHTML() {
-        return bannerHTML;
-    }
-
-    public void setBannerHTML(BannerHTML bannerHTML) {
-        this.bannerHTML = bannerHTML;
-    }
-
-   //  @Scheduled(fixedDelay = 1000, initialDelay = 500)
-    public void send(RabbitTemplate rabbitTemplate) {
-        LOGGER.info(" [x] Sending message to the queue using routingKey= {}. Message= {}", "banners.*", bannerHTML);
-        rabbitTemplate.convertSendAndReceive(MessageConfig.BANNERS_EXCHANGE, MessageConfig.BANNERS_ROUTING_KEY, bannerHTML);
+   // @Scheduled
+    public void send(final RabbitTemplate rabbitTemplate, final BannerHTML bannerHTML) {
+        LOGGER.info(" [x] Sending message to the queue using routingKey= {}. Message= {}", MessageConfig.BANNERS_ROUTING_KEY, bannerHTML);
+        rabbitTemplate.setMessageConverter(new MessageConfig().producerJackson2MessageConverter());
+        rabbitTemplate.convertAndSend(MessageConfig.BANNERS_EXCHANGE, MessageConfig.BANNERS_ROUTING_KEY, bannerHTML);
         LOGGER.info(" [x] The message has been sent to the queue.");
-
     }
 }

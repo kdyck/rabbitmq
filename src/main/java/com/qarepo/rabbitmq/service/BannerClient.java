@@ -25,7 +25,7 @@ public class BannerClient {
     public StringBuilder getBannerTestsResponse(BannerHTML banners, String domain, String endPoint) {
         LOGGER.info("Making REST call to the Banner Tests API.");
         StringBuilder response = null;
-        String json = banners.toJSON();
+        String json = banners.toJson();
         URL url;
         HttpURLConnection conn = null;
         try {

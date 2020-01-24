@@ -1,7 +1,5 @@
 package com.qarepo.rabbitmq.model;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-
 import java.io.Serializable;
 
 public class BannerHTML implements Serializable {
@@ -36,7 +34,7 @@ public class BannerHTML implements Serializable {
         this.previewURL = previewURL;
     }
 
-    public String toJSON() {
+    public String toJson() {
         return "{\n" +
                 "\"jobNumber\":" + "\"" + jobNumber + "\"," +
                 "\"jobName\":" + "\"" + jobName + "\"," +
