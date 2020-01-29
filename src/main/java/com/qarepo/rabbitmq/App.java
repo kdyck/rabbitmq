@@ -1,29 +1,24 @@
 package com.qarepo.rabbitmq;
 
-
+import com.qarepo.rabbitmq.config.AMQPConfig;
 import com.qarepo.rabbitmq.message.MessageReceiver;
-import com.qarepo.rabbitmq.message.MessageSender;
+import com.rabbitmq.client.Channel;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+import java.io.IOException;
+import java.util.concurrent.TimeoutException;
+
+@SpringBootApplication
 public class App {
+	static final String QUEUE_NAME = "banners_rpc_queue";
 
-    public static void main(String[] args) throws Exception {
-        final String QUEUE_NAME = "banners_rpc_queue";
-        String json = "{\n" +
-                "    \"jobNumber\": \"KAY2890928\",\n" +
-                "    \"jobName\": \"Gifting Valentines Day Base Sale Personalize\",\n" +
-                "    \"previewURL\": \"http://zpreview.ztrac.com/clients/196036cf135fba392e12e6b1c622915d\"\n" +
-                "}";
-        MessageSender sender = new MessageSender();
-    /*    Channel channel = AMQPConfig.connect();
-        try {
-            for (int i = 0; i <= 4; i++) {
-                sender.send(channel, "", QUEUE_NAME, json);
-            }
-        } finally {
-            AMQPConfig.close(channel);
-        }*/
-        MessageReceiver receiver = new MessageReceiver();
-        receiver.receive(QUEUE_NAME);
-        // AMQPConfig.close(channel);
-    }
+	public static void main(String[] args) throws IOException, TimeoutException {
+		SpringApplication.run(App.class, args);
+		Channel channel = AMQPConfig.connect();
+		channel.queueDeclare(QUEUE_NAME, true, false, false, null);
+		// Banner QUEUE Consumer
+		MessageReceiver receiver = new MessageReceiver();
+		receiver.receive(QUEUE_NAME);
+	}
 }
