@@ -1,23 +1,20 @@
 package com.qarepo.rabbitmq.message;
 
-import com.qarepo.rabbitmq.config.AMQPConfig;
 import com.rabbitmq.client.Channel;
 import com.rabbitmq.client.MessageProperties;
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.StringWriter;
 import java.nio.charset.StandardCharsets;
-import java.util.concurrent.TimeoutException;
 
-public class MessagePublisher {
-    private static final Logger LOGGER = LogManager.getLogger(MessagePublisher.class);
+public class MessageSender {
+    private static final Logger LOGGER = LogManager.getLogger(MessageSender.class);
     private StringWriter sw = new StringWriter();
 
-    public MessagePublisher() {
+    public MessageSender() {
     }
 
     public void send(Channel channel, String exchangeName, String queueName, String msg) {

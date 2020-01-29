@@ -13,7 +13,7 @@ public class BannerRPCService {
     private static final Logger LOGGER = LogManager.getLogger(BannerRPCController.class);
     private static StringWriter sw = new StringWriter();
 
-    public static StringBuffer callBannerTestService(final String json, final String endpoint) {
+    public static StringBuffer executeBannerTestService(final String json, final String endpoint) {
         URL url;
         HttpURLConnection conn = null;
         StringBuffer response = null;
@@ -57,7 +57,7 @@ public class BannerRPCService {
                 "    \"previewURL\": \"http://zpreview.ztrac.com/clients/196036cf135fba392e12e6b1c622915d\"\n" +
                 "}";
         String endpoint = "http://localhost:8080/runBannerTests";
-        String input = BannerRPCService.callBannerTestService(json, endpoint)
+        String input = BannerRPCService.executeBannerTestService(json, endpoint)
                                        .toString();
         LOGGER.info(" [*] Got '{}' from banner test service.", input);
     }

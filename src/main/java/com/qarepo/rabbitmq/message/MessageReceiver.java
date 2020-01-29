@@ -4,6 +4,7 @@ import com.qarepo.rabbitmq.config.AMQPConfig;
 import com.qarepo.rabbitmq.service.BannerRPCService;
 import com.rabbitmq.client.Channel;
 import com.rabbitmq.client.DeliverCallback;
+import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -14,15 +15,17 @@ import java.nio.charset.StandardCharsets;
 import java.util.concurrent.TimeoutException;
 
 
-public class MessageConsumer {
-    private static final Logger LOGGER = LogManager.getLogger(MessageConsumer.class);
+public class MessageReceiver {
+    private static final Logger LOGGER = LogManager.getLogger(MessageReceiver.class);
     private StringWriter sw = new StringWriter();
+    private static final String ENDPOINT = "http://localhost:8080/runBannerTests";
 
-    public MessageConsumer() {
+    public MessageReceiver() {
     }
 
-    public void receive(Channel channel, String queueName) {
+    public void receive(String queueName) {
         try {
+            Channel channel = AMQPConfig.connect();
             channel.basicQos(1);
             LOGGER.info(" [*] Waiting for messages...");
 
@@ -31,20 +34,20 @@ public class MessageConsumer {
                 LOGGER.info(" [x] Received [" + message + "]");
                 String response = "";
                 try {
-                    String endpoint = "http://localhost:8080/runBannerTests";
-                    response = BannerRPCService.callBannerTestService(message, endpoint)
+                    response = BannerRPCService.executeBannerTestService(message, ENDPOINT)
                                                .toString();
                     LOGGER.info(" [*] RESPONSE=" + response);
                 } finally {
                     LOGGER.info(" [*] Done");
-                    channel.basicAck(delivery.getEnvelope().getDeliveryTag(), false);
+                    channel.basicAck(delivery.getEnvelope()
+                                             .getDeliveryTag(), false);
                 }
             };
             channel.basicConsume(queueName, false, deliverCallback, consumerTag -> {
             });
-        } catch (IOException e) {
+        } catch (IOException | TimeoutException e) {
             e.printStackTrace(new PrintWriter(sw));
-            LOGGER.error("Exception: " + sw.toString());
+            LOGGER.log(Level.ERROR, "Exception: " + sw.toString());
         }
     }
 }
